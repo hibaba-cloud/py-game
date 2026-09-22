@@ -1,0 +1,10 @@
+group=()
+listgroup=list(group)
+for i in range(5):
+    name=input("write down ur group name")
+    medal=input("Type the medal u got")
+    size=input ("Type the size of the group")
+    venu=input ("Type the venu")
+    listgroup.append(name+medal+size+venu)
+group=tuple (listgroup)
+print(group)
