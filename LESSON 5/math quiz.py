@@ -20,17 +20,18 @@ question = str(firstnumber) + " x " + str(secondnumber) + " = "
 rounds=0
 answer = ""
 message = ""
-timer=60
+timer=10
 
 
 def draw():
-    global firstnumber,secondnumber,timer
+    global firstnumber,secondnumber,timer,questionvisible
 
     question = str(firstnumber) + " x " + str(secondnumber) + " = "
     screen.fill("navy")
 
     # Draw the math image
     math.draw()
+    screen.draw.text("Rounds:"+str(rounds),center=(300,200),color="white")
 
     # Show button before it is clicked
     if visible:
@@ -74,20 +75,27 @@ def draw():
         )
 
     # Timer text
-    screen.draw.text(
+    if questionvisible==True:
+        
+    
+        screen.draw.text(
         "Time = "+str(timer),
         (120, 200),
         fontsize=25,
         color="white"
-    )
+        )
+    if timer==0:
+
+        questionvisible=False
 
 
 def on_mouse_down(pos):
-    global visible, questionvisible
+    global visible, questionvisible,timer
 
     if visible and button.collidepoint(pos):
         visible = False
         questionvisible = True
+        timer=10
 
 def on_key_down(key):
     global answer, message,rounds,firstnumber,secondnumber
@@ -122,7 +130,6 @@ def decrease_timer():
     if timer>0:
         timer=timer-1
 clock.schedule_interval(decrease_timer,1.0)
-
 
 
 pgzrun.go()
